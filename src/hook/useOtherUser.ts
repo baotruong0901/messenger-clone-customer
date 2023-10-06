@@ -9,7 +9,7 @@ const useOtherUser = (conversation: Conversation) => {
         const currentUserEmail = session?.data?.user?._id
         const result = conversation?.users?.filter((user) => user._id !== currentUserEmail)
         return result
-    }, [session?.data?.user?.email, conversation?.users])
+    }, [session?.data?.user?.email, conversation?.users, session?.data?.user?._id])
 
     return otherUser?.[0]
 }

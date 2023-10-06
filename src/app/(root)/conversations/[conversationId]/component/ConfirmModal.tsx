@@ -34,7 +34,7 @@ const ConfirmModal = ({ isOpen, onClose }: Props) => {
             setIsLoading(false)
             router.push('/conversations')
         }
-    }, [conversationId, router, onClose])
+    }, [conversationId, router, onClose, session?.data?.tokens?.accessToken])
 
 
     return (

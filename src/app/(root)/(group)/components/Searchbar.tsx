@@ -22,7 +22,7 @@ const Searchbar = ({ routeType, data }: Props) => {
             }
         }, 300)
         return () => clearTimeout(delayDebounceFn)
-    }, [search, routeType])
+    }, [search, routeType, router])
     return (
         <div className="flex bg-black/20 px-4 py-2 rounded-lg">
             <Image

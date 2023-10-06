@@ -38,7 +38,7 @@ const InfoModal = ({ isOpen, onClose, data }: Props) => {
             onClose()
             setIsLoading(false)
         }
-    }, [data, router])
+    }, [data, router, onClose, session?.data?.tokens?.accessToken])
 
     return (
 

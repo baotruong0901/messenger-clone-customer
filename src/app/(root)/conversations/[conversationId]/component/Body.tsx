@@ -4,11 +4,9 @@ import { Message } from "@/lib/types/message";
 import { useEffect, useRef, useState } from "react";
 import BoxMessage from "./BoxMessage";
 import useConversation from "@/hook/useConversation";
-import { useSession } from "next-auth/react";
 import { pusherClient } from "@/lib/pusher";
 import { find } from "lodash";
 import { Session } from "next-auth";
-import { truncateSync } from "fs";
 import { seen } from "@/lib/actions/seen.action";
 
 interface Props {
@@ -28,7 +26,7 @@ const Body = ({ initialMessages, session }: Props) => {
     }
     useEffect(() => {
         seenMessage()
-    }, [conversationId]);
+    }, [conversationId, session?.tokens?.accessToken]);
 
     useEffect(() => {
         if (containerRef.current) {

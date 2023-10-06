@@ -21,7 +21,7 @@ const ActionModal = ({ isOpen, onClose, recall, data, session }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
     const isOwn = useMemo(() => {
         return data?.sender?._id === session?.user?._id
-    }, [data])
+    }, [data, session?.user?._id])
 
     const hanldeDelete = async () => {
         setIsLoading(true)

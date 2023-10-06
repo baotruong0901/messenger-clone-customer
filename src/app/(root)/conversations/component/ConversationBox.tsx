@@ -25,7 +25,7 @@ const ConversationBox = ({ data, user }: Props) => {
 
     const isSelected = useMemo(() => {
         return conversationId === data?._id
-    }, [conversationId])
+    }, [conversationId, data?._id])
 
     const senderLastMessage = useMemo(() => {
         return data?.lastMessage?.sender
@@ -45,7 +45,7 @@ const ConversationBox = ({ data, user }: Props) => {
         }
 
         return false
-    }, [data?.lastMessageAt, user])
+    }, [data?.lastMessageAt, user, data.deletedBy])
 
     const lastMessageText = useMemo(() => {
         if (!isDeleted) {
@@ -102,7 +102,7 @@ const ConversationBox = ({ data, user }: Props) => {
             }
         }
         return 'Started a conversation.'
-    }, [data?.lastMessage, user])
+    }, [data?.lastMessage, user, data.isGroup, isDeleted, senderLastMessage?._id, senderLastMessage?.name])
 
     const hasSeen = useMemo(() => {
         if (!data?.lastMessage) {
