@@ -13,13 +13,15 @@ interface Props {
 const Message = async ({ conversation, messages }: Props) => {
     const session = await getSession()
     return (
-        <div className="bg-zinc-900 flex-1 flex flex-col">
-            <Header conversation={conversation} />
-            <Body
-                initialMessages={messages}
-                session={session!}
-            />
-            <Form />
+        <div className="flex-1">
+            <div className="bg-zinc-900 h-full flex flex-col">
+                <Header conversation={conversation} />
+                <Body
+                    initialMessages={messages}
+                    session={session!}
+                />
+                <Form />
+            </div>
         </div>
 
     )

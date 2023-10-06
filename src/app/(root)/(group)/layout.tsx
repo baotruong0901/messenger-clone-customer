@@ -13,11 +13,13 @@ export default async function Layout({
             <Suspense fallback={<div className="md:w-80 w-20">
                 <ConversationSkeletion />
             </div>}>
-                <div className="overflow-y-auto border-r border-gray-700 md:w-80 w-20 pb-20 bg-black/90">
-                    <User />
-                </div>
+
+                <User />
+
             </Suspense>
-            {children}
+            <div className="flex-1">
+                {children}
+            </div>
         </div>
     );
 }

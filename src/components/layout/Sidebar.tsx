@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/lib/actions/getCurrentUser.action"
 import DesktopSidebar from "./DesktopSidebar"
+import MobileFooter from "./MobileFooter"
 
 export async function Sidebar(
     { children }: { children: React.ReactNode }
@@ -9,7 +10,8 @@ export async function Sidebar(
     return (
         <div className="min-h-screen">
             <DesktopSidebar currentUser={currentUser} />
-            <main className="pl-[70px]">
+            <MobileFooter />
+            <main className="md:pl-[70px]">
                 {children}
             </main>
         </div>

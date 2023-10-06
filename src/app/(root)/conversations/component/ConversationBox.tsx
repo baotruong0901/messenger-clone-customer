@@ -19,7 +19,7 @@ interface Props {
 const ConversationBox = ({ data, user }: Props) => {
     const otherUser = useOtherUser(data)
 
-    const conversationId = useConversation()
+    const { conversationId } = useConversation()
 
     const router = useRouter()
 
@@ -125,13 +125,13 @@ const ConversationBox = ({ data, user }: Props) => {
         <div className="mx-2">
             <div
                 onClick={handleClick}
-                className={`w-full flex md:gap-4 rounded-md items-center p-2 transition cursor-pointer hover:bg-gray-300/10 ${isSelected && ' bg-gray-300/[0.05]'}`}>
+                className={`w-full flex gap-4 rounded-md items-center p-2 transition cursor-pointer hover:bg-gray-300/10 ${isSelected && ' bg-gray-300/[0.05]'}`}>
                 {data.isGroup ? (
                     <AvatarGroup users={data?.users} />
                 ) : (
                     <Avatar user={otherUser} className="w-11 h-11" />
                 )}
-                <div className="hidden md:block flex-1 min-w-0 mb-2">
+                <div className="flex-1 min-w-0 mb-2">
                     <div className="focus:outline-none">
                         <p className={`text-md ${hasSeen ? 'font-light' : 'font-semibold'} text-white`}>
                             {data?.name || otherUser?.name}

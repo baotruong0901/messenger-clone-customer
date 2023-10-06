@@ -13,7 +13,10 @@ const BoxMessageSkeletion = () => {
         <>
             <div className="flex items-center justify-between border-b border-gray-700 py-2 px-4 sm:px-4 lg:px-6">
                 <div className="flex items-center gap-4">
-                    <Skeleton variant="circular" width={45} height={45} style={skeletonStyle} />
+                    <div className="flex items-center gap-3">
+                        <Skeleton animation="wave" variant="text" height={30} width={30} style={skeletonStyle} />
+                        <Skeleton variant="circular" width={45} height={45} style={skeletonStyle} />
+                    </div>
                     <div className="flex flex-col">
                         <div>
                             <Skeleton animation="wave" variant="text" height={30} width={80} style={skeletonStyle} />

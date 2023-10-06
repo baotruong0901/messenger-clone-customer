@@ -9,6 +9,9 @@ import { User } from "@/lib/types/user";
 import GroupModal from "./GroupModal";
 import { pusherClient } from "@/lib/pusher";
 import { find } from "lodash";
+import useConversation from "@/hook/useConversation";
+import { IoReorderThree } from 'react-icons/io5'
+import SideBarModal from "./SideBarModal";
 
 interface Props {
     conversations: Conversation[];
@@ -18,8 +21,9 @@ interface Props {
 const ConversationList = ({ conversations, users, session }: Props) => {
 
     const [conversationItems, setConversationItems] = useState(conversations)
-
+    const { isOpen } = useConversation()
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     useEffect(() => {
         if (!session) {
@@ -83,7 +87,7 @@ const ConversationList = ({ conversations, users, session }: Props) => {
         }
     }, [session])
 
-    console.log("conversationItems", conversationItems);
+    console.log("isOpen", isOpen);
 
 
     return (
@@ -93,29 +97,40 @@ const ConversationList = ({ conversations, users, session }: Props) => {
                 onClose={() => setIsModalOpen(false)}
                 users={users}
             />
-            <div className="flex items-center justify-between m-4 px-3 md:px-4 text-white">
-                <div className="text-2xl font-semibold md:block hidden">
-                    Chat
+            <SideBarModal
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+            />
+            <aside className={`${isOpen ? 'hidden' : 'block w-full'}  overflow-y-auto md:block border-r border-gray-700 md:w-80 w-full pb-20 md:pb-0  bg-black/90`}>
+                <div className={`flex items-center justify-between m-4 px-3 md:px-4 text-white`}>
+                    <div
+                        onClick={() => setIsSidebarOpen(true)}
+                        className="md:hidden block cursor-pointer hover:opacity-75">
+                        <IoReorderThree size={40} />
+                    </div>
+                    <div className="text-2xl font-semibold">
+                        Chat
+                    </div>
+                    <div
+                        className="cursor-pointer hover:opacity-75"
+                        onClick={() => setIsModalOpen(true)}>
+                        <HiOutlinePencilAlt size={24} />
+                    </div>
                 </div>
-                <div
-                    className="cursor-pointer hover:opacity-75"
-                    onClick={() => setIsModalOpen(true)}>
-                    <HiOutlinePencilAlt size={24} />
-                </div>
-            </div>
-            {conversationItems && conversationItems.length > 0 ? conversationItems.map((conversation) => (
-                <ConversationBox
-                    key={conversation._id}
-                    data={conversation}
-                    user={session?.user!}
-                />
+                {conversationItems && conversationItems.length > 0 ? conversationItems.map((conversation) => (
+                    <ConversationBox
+                        key={conversation._id}
+                        data={conversation}
+                        user={session?.user!}
+                    />
 
-            ))
-                :
-                <div className="mx-8 text-gray-400 font-medium ">
-                    No conversation
-                </div>
-            }
+                ))
+                    :
+                    <div className="mx-8 text-gray-400 font-medium ">
+                        No conversation
+                    </div>
+                }
+            </aside>
         </>
     );
 }

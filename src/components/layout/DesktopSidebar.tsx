@@ -10,7 +10,7 @@ interface Props {
 }
 const DesktopSidebar = ({ currentUser }: Props) => {
     return (
-        <div className="fixed inset-y-0 left-0 z-40 w-[70px] flex py-2 flex-col justify-between items-center bg-black/80 border-gray-700 border-r">
+        <div className="max-md:hidden fixed inset-y-0 left-0 z-40 w-[70px] flex py-2 flex-col justify-between items-center bg-black/80 border-gray-700 border-r">
             <nav>
                 <ul className="space-y-1">
                     {sidebarLinks.map((item) => {

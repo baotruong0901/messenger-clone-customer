@@ -18,7 +18,7 @@ interface Props {
 const ConfirmModal = ({ isOpen, onClose }: Props) => {
     const [isLoading, setIsLoading] = useState(false)
 
-    const conversationId = useConversation()
+    const { conversationId } = useConversation()
     const session = useSession()
     const router = useRouter()
 

@@ -50,7 +50,7 @@ const UserCard = ({ data }: Props) => {
                 <LoadingModal />
             }
             <article
-                className="flex flex-col justify-between gap-4 max-sm:rounded-xl max-sm:bg-black/40 max-sm:p-4 sm:flex-row sm:items-center sm:hover:bg-black/20 p-2 rounded-sm cursor-pointer">
+                className="flex justify-between gap-4 items-center hover:bg-black/20 p-2 rounded-sm cursor-pointer">
                 <div
                     onClick={() => handleClick()}
                     className="flex flex-1 items-start justify-start gap-3 sm:items-center">

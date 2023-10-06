@@ -18,10 +18,9 @@ const Page = async ({ params }: { params: Props }) => {
 
     if (!conversation && !conversationById) {
         return (
-            <>
-
+            <div className="flex-col flex-1 min-h-screen">
                 <EmptyMessage />
-            </>
+            </div>
         )
     }
     return (

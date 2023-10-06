@@ -7,6 +7,8 @@ import { Conversation } from "@/lib/types/conversation";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
 import ProfileDrawer from "./ProfileDrawer";
 import { useState } from "react";
+import Link from "next/link";
+import { HiChevronLeft } from "react-icons/hi";
 
 interface Props {
     conversation: Conversation
@@ -25,8 +27,11 @@ const Header = ({ conversation }: Props) => {
                 onClose={() => setIsOpen(false)}
             />
 
-            <div className="flex items-center justify-between border-b border-gray-700 py-3 px-4 sm:px-4 lg:px-6">
+            <div className="flex items-center flex-shrink-0 justify-between border-b border-gray-700 py-3 px-4 sm:px-4 lg:px-6">
                 <div className="flex items-center gap-4">
+                    <Link className="md:hidden block text-gray-300 hover:text-gray-500 transition cursor-pointer" href={'/conversations'}>
+                        <HiChevronLeft size={32} />
+                    </Link>
                     {conversation?.isGroup ? (
                         <AvatarGroup
                             users={conversation?.users}

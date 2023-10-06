@@ -8,7 +8,7 @@ import { AiFillLike } from "react-icons/ai";
 import { HiPhoto } from "react-icons/hi2";
 
 const Form = () => {
-    const conversationId = useConversation()
+    const { conversationId } = useConversation()
     const session = useSession()
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
@@ -31,7 +31,7 @@ const Form = () => {
         const res = await createMessage({ image: selectedFile }, conversationId, session?.data?.tokens?.accessToken)
     };
     return (
-        <div className="flex items-center gap-2 w-full p-4">
+        <div className="flex items-center gap-2 w-full p-4 flex-shrink-0">
             <label htmlFor="fileInput" className="cursor-pointer">
                 <HiPhoto size={30} className="text-blue-700" />
             </label>

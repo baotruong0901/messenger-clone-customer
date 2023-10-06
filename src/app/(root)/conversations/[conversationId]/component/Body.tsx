@@ -19,7 +19,7 @@ const Body = ({ initialMessages, session }: Props) => {
 
     const containerRef = useRef<HTMLDivElement | null>(null)
 
-    const conversationId = useConversation()
+    const { conversationId } = useConversation()
 
     const seenMessage = async () => {
         await seen(conversationId, session?.tokens?.accessToken)
