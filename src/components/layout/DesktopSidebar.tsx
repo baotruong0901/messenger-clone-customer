@@ -20,6 +20,7 @@ const DesktopSidebar = ({ currentUser }: Props) => {
                                 href={item.href}
                                 label={item.label}
                                 icon={item.icon}
+                                onClick={item.onClick}
                             />
                         )
                     })}

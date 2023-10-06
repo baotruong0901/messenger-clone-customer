@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 interface Props {
     href: string;
     icon: any;
-    label: string
+    label: string;
+    onClick?: () => void
 }
-const DesktopItem = ({ href, icon: Icon, label }: Props) => {
+const DesktopItem = ({ href, icon: Icon, label, onClick }: Props) => {
     const pathname = usePathname()
     let active
     if (href === '/users') {
@@ -15,8 +16,16 @@ const DesktopItem = ({ href, icon: Icon, label }: Props) => {
     } else {
         active = ((pathname?.includes(href) && href.length > 1) || pathname === href)
     }
+
+    const handleClick = () => {
+        if (onClick) {
+            return onClick()
+        }
+    }
     return (
-        <li className="group relative">
+        <li
+            onClick={handleClick}
+            className="group relative">
             <Link
                 href={href}
                 className={`relative flex gap-x-3 rounded-md px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 ${active && 'bg-white/[0.05]'}`}

@@ -17,7 +17,7 @@ const BodyLayout = ({ users }: Props) => {
                 ) : (
                     <>
 
-                        {users.map((user: User) => (
+                        {users?.map((user: User) => (
                             <UserCard
                                 key={user._id}
                                 data={user}

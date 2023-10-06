@@ -14,7 +14,7 @@ export async function createMessage(data: any, conversationId: string, token?: s
         }
         formData.append("conversationId", conversationId);
 
-        const res = await fetch(`http://localhost:8888/messages`, {
+        const res = await fetch(`https://faithful-pot-production.up.railway.app/messages`, {
             method: "POST",
             body: formData,
             headers: {

@@ -12,7 +12,7 @@ export const getUsers = async ({
     try {
         const session = await getSession()
 
-        const users = (await fetch(`http://localhost:8888/user/all?searchString=${searchString}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+        const users = (await fetch(`${process.env.BACKEND_URL}/user/all?searchString=${searchString}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${session?.tokens?.accessToken}`

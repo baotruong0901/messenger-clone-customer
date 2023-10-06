@@ -8,7 +8,7 @@ export const getCurrentUser = async () => {
             return null
         }
 
-        const currentUser = await fetch(`http://localhost:8888/user`, {
+        const currentUser = await fetch(`${process.env.BACKEND_URL}/user`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${session?.tokens?.accessToken}`

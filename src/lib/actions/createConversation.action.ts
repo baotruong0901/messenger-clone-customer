@@ -2,7 +2,7 @@
 export async function createConversation(data: any, token?: string) {
     const { isGroup, name, members, userId } = data
     try {
-        const res = await fetch(`http://localhost:8888/conversation`, {
+        const res = await fetch(`https://faithful-pot-production.up.railway.app/conversation`, {
             method: "POST",
             body: JSON.stringify({
                 isGroup,

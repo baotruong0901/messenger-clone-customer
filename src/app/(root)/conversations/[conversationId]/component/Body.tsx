@@ -9,6 +9,7 @@ import { pusherClient } from "@/lib/pusher";
 import { find } from "lodash";
 import { Session } from "next-auth";
 import { truncateSync } from "fs";
+import { seen } from "@/lib/actions/seen.action";
 
 interface Props {
     initialMessages: Message[];
@@ -22,13 +23,11 @@ const Body = ({ initialMessages, session }: Props) => {
 
     const conversationId = useConversation()
 
+    const seenMessage = async () => {
+        await seen(conversationId, session?.tokens?.accessToken)
+    }
     useEffect(() => {
-        fetch(`http://localhost:8888/conversation/${conversationId}/seen`, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${session?.tokens?.accessToken}`
-            }
-        })
+        seenMessage()
     }, [conversationId]);
 
     useEffect(() => {
@@ -45,12 +44,7 @@ const Body = ({ initialMessages, session }: Props) => {
         pusherClient.subscribe(conversationId)
 
         const messageHandler = (message: Message) => {
-            fetch(`http://localhost:8888/conversation/${conversationId}/seen`, {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${session?.tokens?.accessToken}`
-                }
-            })
+            seenMessage()
 
             setMessages((current) => {
                 if (find(current, { _id: message._id })) {

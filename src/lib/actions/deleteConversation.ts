@@ -1,6 +1,6 @@
 export async function deleteConversation(conversationId: string, token?: string) {
 
-    const res = await fetch(`http://localhost:8888/conversation/${conversationId}`, {
+    const res = await fetch(`https://faithful-pot-production.up.railway.app/conversation/${conversationId}`, {
         method: 'DELETE',
         headers: {
             Authorization: `Bearer ${token}`

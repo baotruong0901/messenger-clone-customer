@@ -4,7 +4,7 @@ export const getConversationById = async (conversationId: string) => {
     try {
         const session = await getSession()
 
-        const conversation = await fetch(`http://localhost:8888/conversation/${conversationId}`, {
+        const conversation = await fetch(`${process.env.BACKEND_URL}/conversation/${conversationId}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${session?.tokens?.accessToken}`

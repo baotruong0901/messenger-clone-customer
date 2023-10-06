@@ -8,7 +8,7 @@ export async function updateUser(data: any, userId?: string, token?: string) {
     formData.append("description", data.description);
     formData.append("avatar", data.avatar[0]);
 
-    const res = await fetch(`http://localhost:8888/user/${userId}`, {
+    const res = await fetch(`https://faithful-pot-production.up.railway.app/user/${userId}`, {
         method: 'PATCH',
         body: formData,
         headers: {

@@ -5,7 +5,7 @@ export const getConversations = async ({ isGroup = false, searchString = "", pag
     try {
         const session = await getSession()
 
-        const conversations = await fetch(`http://localhost:8888/conversation?searchString=${searchString}&isGroup=${isGroup}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+        const conversations = await fetch(`${process.env.BACKEND_URL}/conversation?searchString=${searchString}&isGroup=${isGroup}&pageNumber=${pageNumber}&pageSize=${pageSize}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${session?.tokens?.accessToken}`

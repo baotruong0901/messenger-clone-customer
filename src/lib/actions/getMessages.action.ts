@@ -4,7 +4,7 @@ export const getMessages = async (conversationId: string) => {
     try {
         const session = await getSession()
 
-        const messages = (await fetch(`http://localhost:8888/messages/${conversationId}`, {
+        const messages = (await fetch(`${process.env.BACKEND_URL}/messages/${conversationId}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${session?.tokens?.accessToken}`
