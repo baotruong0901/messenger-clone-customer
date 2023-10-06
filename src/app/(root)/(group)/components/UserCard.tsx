@@ -37,7 +37,7 @@ const UserCard = ({ data }: Props) => {
         } finally {
             setIsLoading(false)
         }
-    }, [data, session?.tokens?.accessToken])
+    }, [data, session])
 
     return (
         <>
