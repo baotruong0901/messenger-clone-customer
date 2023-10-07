@@ -101,7 +101,7 @@ const ConversationList = ({ conversations, users, session }: Props) => {
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}
             />
-            <aside className={`${isOpen ? 'hidden' : 'block w-full'}  overflow-y-auto md:block border-r border-gray-700 md:w-80 mb-14  bg-black/90`}>
+            <aside className={`${isOpen ? 'hidden' : 'block w-full'}  overflow-y-auto md:block border-r border-gray-700 md:w-80 pb-14  bg-black/90`}>
                 <div className={`flex items-center justify-between m-4 px-3 md:px-4 text-white`}>
                     <div
                         onClick={() => setIsSidebarOpen(true)}

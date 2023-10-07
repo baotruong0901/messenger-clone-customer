@@ -33,7 +33,6 @@ const Select = ({ label, value, onChange, options, disabled }: SelectProps) => {
                     classNames={{
                         control: () => "text-sm"
                     }}
-
                 />
             </div>
         </div>

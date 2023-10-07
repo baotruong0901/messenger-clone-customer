@@ -32,12 +32,14 @@ const Searchbar = ({ routeType, data }: Props) => {
                 height={24}
                 className="object-contain"
             />
-            <InputSearch
+            <input
                 id="text"
                 onChange={(e) => setSearch(e.target.value)}
+                inputMode="search"
                 value={search}
+
                 placeholder={`${routeType !== "users" ? "Tìm nhóm" : "Tìm bạn"}`}
-                className="focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 border-none outline-none text-base"
+                className="focus-visible:ring-0 flex h-10 w-full rounded-md  border px-3 py-2 text-sm bg-transparent focus-visible:ring-transparent focus-visible:ring-offset-0 border-none outline-none"
             />
         </div>
     );

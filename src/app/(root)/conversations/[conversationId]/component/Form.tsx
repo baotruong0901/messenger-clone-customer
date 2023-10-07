@@ -3,20 +3,30 @@
 import useConversation from "@/hook/useConversation";
 import { createMessage } from "@/lib/actions/createMessage.action";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiFillLike } from "react-icons/ai";
 import { HiPhoto } from "react-icons/hi2";
+import { IoMdSend } from "react-icons/io";
 
 const Form = () => {
     const { conversationId } = useConversation()
     const session = useSession()
+    const [isMessageEmpty, setIsMessageEmpty] = useState(true);
+
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             message: "",
         }
     })
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue("message", e.target.value);
+        // Kiểm tra xem giá trị có rỗng không
+        setIsMessageEmpty(e.target.value.trim() === "");
+    };
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setValue('message', '', { shouldValidate: true })
+        setIsMessageEmpty(true);
         await createMessage({ ...data }, conversationId, session?.data?.tokens?.accessToken)
     }
 
@@ -24,14 +34,12 @@ const Form = () => {
         await createMessage({ like: "true" }, conversationId, session?.data?.tokens?.accessToken)
     }
 
-
     const handleFileChange = async (event: any) => {
         const selectedFile = event.target.files[0];
-
-        const res = await createMessage({ image: selectedFile }, conversationId, session?.data?.tokens?.accessToken)
+        await createMessage({ image: selectedFile }, conversationId, session?.data?.tokens?.accessToken)
     };
     return (
-        <div className="fixed bottom-0 left-0 right-0 md:left-[390px] z-40 bg-zinc-900/95 flex items-center flex-shrink-0 justify-between gap-2 p-4">
+        <div className="fixed bottom-0 left-0 right-0 md:left-[390px] z-40 bg-zinc-900 flex items-center flex-shrink-0 justify-between gap-2 p-4">
             <label htmlFor="fileInput" className="cursor-pointer">
                 <HiPhoto size={30} className="text-blue-700" />
             </label>
@@ -55,13 +63,18 @@ const Form = () => {
                         placeholder="Write a message..."
                         required
                         className="text-white font-light bg-white/10 w-full py-2 px-4 rounded-full focus:outline-none"
+                        onChange={handleInputChange}
                     />
                 </div>
-                <div
-                    className="cursor-pointer"
-                    onClick={() => handleSentLike()}>
-                    <AiFillLike size={24} className="text-blue-700" />
-                </div>
+                {isMessageEmpty ? (
+                    <div className="cursor-pointer" onClick={() => handleSentLike()}>
+                        <AiFillLike size={24} className="text-blue-700" />
+                    </div>
+                ) : (
+                    <button type="submit">
+                        <IoMdSend size={24} className="text-blue-700" />
+                    </button>
+                )}
             </form>
         </div>
     );

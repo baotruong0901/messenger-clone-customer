@@ -17,7 +17,7 @@ interface Props {
 const Body = ({ initialMessages, session }: Props) => {
     const [messages, setMessages] = useState(initialMessages)
 
-    const containerRef = useRef<HTMLDivElement | null>(null)
+    const bottomRef = useRef<HTMLDivElement>(null)
 
     const { conversationId } = useConversation()
 
@@ -28,19 +28,10 @@ const Body = ({ initialMessages, session }: Props) => {
         seenMessage()
     }, [conversationId, session?.tokens?.accessToken]);
 
-    useEffect(() => {
-        if (containerRef.current) {
-            const lastMessage = containerRef.current.lastElementChild;
-
-            if (lastMessage) {
-                lastMessage.scrollIntoView({ behavior: "auto", block: "end" });
-            }
-        }
-    }, [messages]);
 
     useEffect(() => {
         pusherClient.subscribe(conversationId)
-
+        bottomRef?.current?.scrollIntoView()
         const messageHandler = (message: Message) => {
             seenMessage()
 
@@ -50,6 +41,7 @@ const Body = ({ initialMessages, session }: Props) => {
                 }
                 return [...current, message]
             })
+            bottomRef?.current?.scrollIntoView()
 
         }
 
@@ -81,7 +73,7 @@ const Body = ({ initialMessages, session }: Props) => {
     }, [conversationId])
 
     return (
-        <div className="flex-1 overflow-y-auto my-[70px]" ref={containerRef} >
+        <div className="flex-1 overflow-y-auto pt-[72px]" >
             {messages.length > 0 && messages.map((message, index) => {
                 let showAvatar = false
 
@@ -123,13 +115,16 @@ const Body = ({ initialMessages, session }: Props) => {
                 }
 
                 return (
-                    <BoxMessage
-                        key={message._id}
-                        data={message}
-                        isLast={index === messages.length - 1}
-                        showAvatar={showAvatar}
-                        showTimestamp={showTimestamp}
-                    />
+                    <>
+                        <BoxMessage
+                            key={message._id}
+                            data={message}
+                            isLast={index === messages.length - 1}
+                            showAvatar={showAvatar}
+                            showTimestamp={showTimestamp}
+                        />
+                        <div ref={bottomRef} className="pt-20" />
+                    </>
                 )
             }
             )}

@@ -10,7 +10,7 @@ const AvatarGroup = ({ users }: Props) => {
     const sliceUsers = users?.slice(1, 3)
 
     const positionMap = {
-        0: "top-0 right-0 z-40 ring-2 ring-zinc-900",
+        0: "top-0 right-0 z-20 ring-2 ring-zinc-900",
         1: "bottom-0 left-0  z-10"
     }
 

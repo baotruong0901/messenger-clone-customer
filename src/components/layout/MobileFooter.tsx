@@ -2,7 +2,7 @@
 
 import useConversation from "@/hook/useConversation";
 import MobileItem from "./MobileItem";
-import { sidebarLinks } from "@/contants";
+import { mobileLinks } from "@/contants";
 
 
 
@@ -15,7 +15,7 @@ const MobileFooter = () => {
 
     return (
         <div className="fixed justify-between w-full bottom-0 z-40 flex items-center bg-zinc-900 md:hidden" >
-            {sidebarLinks.filter((item) => item.href !== "#").map((route) => (
+            {mobileLinks.filter((item) => item.href !== "#").map((route) => (
                 <MobileItem
                     key={route.href}
                     href={route.href}
