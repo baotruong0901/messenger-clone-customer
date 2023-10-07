@@ -31,7 +31,12 @@ const Body = ({ initialMessages, session }: Props) => {
 
     useEffect(() => {
         pusherClient.subscribe(conversationId)
-        bottomRef?.current?.scrollIntoView()
+        if (bottomRef.current) {
+            const lastMessage = bottomRef.current.lastElementChild;
+            if (lastMessage) {
+                lastMessage.scrollIntoView({ behavior: "auto", block: "end" });
+            }
+        }
         const messageHandler = (message: Message) => {
             seenMessage()
 
@@ -41,7 +46,12 @@ const Body = ({ initialMessages, session }: Props) => {
                 }
                 return [...current, message]
             })
-            bottomRef?.current?.scrollIntoView()
+            if (bottomRef.current) {
+                const lastMessage = bottomRef.current.lastElementChild;
+                if (lastMessage) {
+                    lastMessage.scrollIntoView({ behavior: "auto", block: "end" });
+                }
+            }
 
         }
 
@@ -73,7 +83,7 @@ const Body = ({ initialMessages, session }: Props) => {
     }, [conversationId])
 
     return (
-        <div className="flex-1 overflow-y-auto pt-[72px]" >
+        <div className="flex-1 overflow-y-auto pt-[72px]" ref={bottomRef} >
             {messages.length > 0 && messages.map((message, index) => {
                 let showAvatar = false
 
@@ -125,7 +135,6 @@ const Body = ({ initialMessages, session }: Props) => {
                 )
             }
             )}
-            <div ref={bottomRef} className="pt-20" />
         </div >
     );
 }

@@ -155,18 +155,28 @@ const ConversationBox = ({ data, user }: Props) => {
                         </div>
                     </div>
                 </div>
-                {senderLastMessage?._id === user?._id && hasSeen &&
-                    <div className="hidden md:flex items-center justify-end">
+                {senderLastMessage?._id === user?._id && hasSeen ?
+                    <div className="flex items-center justify-end">
                         {data?.lastMessage?.seens?.length > 1 && data?.lastMessage?.seens?.length < 4 && listSeen?.map((item) => (
                             <Image
                                 key={`avatar-${item?._id}`}
-                                src={item?.avatar || '/images/2598235.png'}
+                                src={item?.avatar || '/images/placeholder.jpg'}
                                 alt="image sender"
                                 className="object-contain rounded-full"
                                 width={14}
                                 height={14}
                             />
                         ))}
+                    </div>
+                    :
+                    <div className="flex items-center justify-end">
+                        <Image
+                            src={'/images/2598235.png'}
+                            alt="image sender"
+                            className="object-contain rounded-full"
+                            width={14}
+                            height={14}
+                        />
                     </div>
                 }
             </div>
