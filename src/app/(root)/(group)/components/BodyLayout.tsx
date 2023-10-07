@@ -8,7 +8,7 @@ interface Props {
 const BodyLayout = ({ users }: Props) => {
     return (
         <section>
-            <div className="flex flex-col gap-2 mb-14">
+            <div className="flex flex-col gap-2 pb-14">
                 {users?.length === 0 ? (
                     <div className="flex flex-col gap-4 w-full items-center ">
                         <p className="text-[14px] text-gray-300">Không tìm thấy kết quả</p>

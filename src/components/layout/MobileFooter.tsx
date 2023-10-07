@@ -14,7 +14,7 @@ const MobileFooter = () => {
     }
 
     return (
-        <div className="fixed justify-between w-full bottom-0 z-40 flex items-center bg-zinc-900 md:hidden" >
+        <div className="fixed justify-between w-full bottom-0 z-40 flex items-center pt-4 bg-zinc-900 md:hidden" >
             {mobileLinks.filter((item) => item.href !== "#").map((route) => (
                 <MobileItem
                     key={route.href}

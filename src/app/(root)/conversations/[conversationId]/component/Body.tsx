@@ -115,19 +115,17 @@ const Body = ({ initialMessages, session }: Props) => {
                 }
 
                 return (
-                    <>
-                        <BoxMessage
-                            key={message._id}
-                            data={message}
-                            isLast={index === messages.length - 1}
-                            showAvatar={showAvatar}
-                            showTimestamp={showTimestamp}
-                        />
-                        <div ref={bottomRef} className="pt-20" />
-                    </>
+                    <BoxMessage
+                        key={message._id}
+                        data={message}
+                        isLast={index === messages.length - 1}
+                        showAvatar={showAvatar}
+                        showTimestamp={showTimestamp}
+                    />
                 )
             }
             )}
+            <div ref={bottomRef} className="pt-20" />
         </div >
     );
 }
