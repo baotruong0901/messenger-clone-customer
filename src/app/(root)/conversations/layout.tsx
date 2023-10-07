@@ -9,7 +9,6 @@ export default async function Layout({
 }) {
     return (
         <div className="flex h-full">
-
             <Suspense fallback={<ConversationSkeletion />}>
                 <Conversations />
             </Suspense>

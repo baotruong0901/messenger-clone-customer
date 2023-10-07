@@ -31,7 +31,7 @@ const Form = () => {
         const res = await createMessage({ image: selectedFile }, conversationId, session?.data?.tokens?.accessToken)
     };
     return (
-        <div className="flex items-center gap-2 w-full p-4 flex-shrink-0">
+        <div className="fixed bottom-0 left-0 right-0 md:left-[390px] z-40 bg-zinc-900/95 flex items-center flex-shrink-0 justify-between gap-2 p-4">
             <label htmlFor="fileInput" className="cursor-pointer">
                 <HiPhoto size={30} className="text-blue-700" />
             </label>

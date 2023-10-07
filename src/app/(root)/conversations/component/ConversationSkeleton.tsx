@@ -12,7 +12,7 @@ const ConversationSkeletion = () => {
 
     return (
         <>
-            <div className={`${isOpen ? "hidden" : "w-full"} md:block border-r border-gray-700 pb-20 bg-black/90 h-full`}>
+            <div className={`${isOpen ? "hidden" : "w-full"} md:block md:w-80 border-r border-gray-700 pb-20 bg-black/90 h-full`}>
                 <div className="flex items-center justify-between p-4 px-3 md:px-4">
                     <div className="block md:hidden">
                         <Skeleton animation="wave" variant="rounded" height={35} width={40} style={skeletonStyle} />

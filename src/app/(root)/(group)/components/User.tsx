@@ -15,7 +15,7 @@ const User = () => {
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}
             />
-            <aside className={`hidden overflow-y-auto md:block border-r border-gray-700 md:w-80 w-full pb-20 md:pb-0  bg-black/90`}>
+            <aside className={`hidden md:block border-r border-gray-700 md:w-80 w-full bg-black/90`}>
                 <div className="flex items-center justify-between m-4 px-3 md:px-4 text-white">
                     <div
                         onClick={() => setIsSidebarOpen(true)}

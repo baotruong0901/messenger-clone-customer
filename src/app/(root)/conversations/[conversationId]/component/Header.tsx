@@ -27,7 +27,7 @@ const Header = ({ conversation }: Props) => {
                 onClose={() => setIsOpen(false)}
             />
 
-            <div className="flex items-center flex-shrink-0 justify-between border-b border-gray-700 py-3 px-4 sm:px-4 lg:px-6">
+            <div className="fixed top-0 left-0 right-0 md:left-[390px] z-40 bg-zinc-900/90 flex items-center flex-shrink-0 justify-between border-b border-gray-700 py-3 px-4 sm:px-4 lg:px-6">
                 <div className="flex items-center gap-4">
                     <Link className="md:hidden block text-gray-300 hover:text-gray-500 transition cursor-pointer" href={'/conversations'}>
                         <HiChevronLeft size={32} />

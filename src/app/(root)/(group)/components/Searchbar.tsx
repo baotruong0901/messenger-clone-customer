@@ -24,7 +24,7 @@ const Searchbar = ({ routeType, data }: Props) => {
         return () => clearTimeout(delayDebounceFn)
     }, [search, routeType, router])
     return (
-        <div className="flex bg-black/20 px-4 py-2 rounded-lg">
+        <div className="flex bg-black/20 px-4 py-2 mb-4 rounded-lg">
             <Image
                 src={'/images/search-gray.svg'}
                 alt="search icon"

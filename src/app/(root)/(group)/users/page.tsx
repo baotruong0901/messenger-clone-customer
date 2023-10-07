@@ -30,12 +30,11 @@ const PageUser = async ({
                 </div>
                 <div></div>
             </div>
-            <div className='py-3 px-4 sm:px-4 lg:px-6'>
+
+            <div className='py-3 px-4 sm:px-4 lg:px-6 flex-1 h-screen overflow-y-auto'>
                 <Searchbar routeType='users'
                     data={searchParams.q!}
                 />
-            </div>
-            <div className='py-3 px-4 sm:px-4 lg:px-6 flex-1 overflow-y-auto'>
                 <BodyLayout users={users} />
             </div>
         </div>

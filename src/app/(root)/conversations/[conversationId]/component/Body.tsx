@@ -81,7 +81,7 @@ const Body = ({ initialMessages, session }: Props) => {
     }, [conversationId])
 
     return (
-        <div className="flex-1 overflow-y-auto pt-2" ref={containerRef} >
+        <div className="flex-1 overflow-y-auto my-[70px]" ref={containerRef} >
             {messages.length > 0 && messages.map((message, index) => {
                 let showAvatar = false
 
@@ -89,18 +89,6 @@ const Body = ({ initialMessages, session }: Props) => {
 
                 if (index === 0) {
                     showTimestamp = true
-                    // if (
-                    //     messages.length === 1 &&
-                    //     message.sender?._id !== session?.user?._id
-                    // ) {
-                    //     showAvatar = true;
-                    // } else if (
-                    //     messages.length > 1 &&
-                    //     message.sender?._id !== session?.user?._id &&
-                    //     messages[index + 1]?.sender?._id !== session?.user?._id
-                    // ) {
-                    //     showAvatar = true;
-                    // }
                 }
                 else {
                     // Bắt đầu từ tin nhắn thứ hai

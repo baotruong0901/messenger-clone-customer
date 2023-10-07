@@ -5,6 +5,8 @@ import { Fragment } from "react";
 import { IoMdClose } from "react-icons/io";
 import { mobileLinks } from "@/contants";
 import SidebarToggle from "./SidebarToggle";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const SideBarModal = ({ isOpen, onClose }: Props) => {
+    const { data: session } = useSession()
     return (
         <>
             <Transition.Root appear show={isOpen} as={Fragment}>
@@ -43,7 +46,7 @@ const SideBarModal = ({ isOpen, onClose }: Props) => {
                                 >
                                     <Dialog.Panel className="w-screen max-w-md pointer-events-auto">
                                         <div className="flex flex-col bg-zinc-900 h-full overflow-y-scroll py-6 px-4 shadow-xl shadow-gray-900 text-gray-300">
-                                            <div className="flex items-start justify-end">
+                                            <div className="fixed right-4  z-50 items-start justify-end">
                                                 <button
                                                     type="button"
                                                     onClick={onClose}
@@ -58,8 +61,20 @@ const SideBarModal = ({ isOpen, onClose }: Props) => {
                                                     />
                                                 </button>
                                             </div>
-                                            <div className="flex-1 relative mt-4">
-                                                <div className="flex flex-col " >
+                                            <div className="flex-1 relative">
+                                                <div className="fixed top-0 left-0 right-0 bg-zinc-900/90 flex items-center gap-4 px-8 py-4">
+                                                    <div className={`relative border border-gray-700 inline-block rounded-full overflow-hidden w-9 h-9`}>
+                                                        <Image
+                                                            fill
+                                                            src={session?.user?.avatar || '/images/placeholder.jpg'}
+                                                            alt="Avatar"
+                                                        />
+                                                    </div>
+                                                    <span>
+                                                        {session?.user?.name}
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-col mt-12" >
                                                     {mobileLinks.map((route) => (
                                                         <SidebarToggle
                                                             key={route.href}

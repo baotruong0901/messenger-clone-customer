@@ -10,16 +10,12 @@ export default async function Layout({
 }) {
     return (
         <div className="flex h-full">
-            <Suspense fallback={<div className="md:w-80 w-20">
+            <Suspense fallback={
                 <ConversationSkeletion />
-            </div>}>
-
+            }>
                 <User />
-
             </Suspense>
-            <div className="flex-1">
-                {children}
-            </div>
+            {children}
         </div>
     );
 }

@@ -36,11 +36,11 @@ const SidebarToggle: React.FC<MobileItemProps> = ({
         <Link
             onClick={handleClick}
             href={href}
-            className={`flex gap-5 leading-6 font-semibold w-full p-4 text-gray-300 hover:bg-white/10
+            className={`flex items-center gap-5 leading-6 font-medium w-full p-4 text-gray-300 hover:bg-white/10
             ${active! && 'bg-white/[0.05]'}
             `}>
             <Icon className="h-8 w-8" />
-            <span className="text-xl">
+            <span className="text-sm">
                 {label}
             </span>
         </Link>
