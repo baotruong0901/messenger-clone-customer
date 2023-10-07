@@ -8,7 +8,7 @@ export async function Sidebar(
 
     const currentUser = await getCurrentUser()
     return (
-        <div className="min-h-screen">
+        <div className="h-screen">
             <DesktopSidebar currentUser={currentUser} />
             <MobileFooter />
             <main className="md:pl-[70px]">

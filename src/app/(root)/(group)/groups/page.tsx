@@ -16,7 +16,7 @@ const PageGroups = async ({
     })
     return (
         <>
-            <div className="bg-zinc-900 text-gray-300 flex-1 flex flex-col">
+            <div className="bg-zinc-900 text-gray-300 h-screen flex-1 flex flex-col gap-2">
                 <div className="flex items-center justify-between border-b border-gray-700 h-[70px] py-3 px-4 sm:px-4 lg:px-6">
                     <Link className="md:hidden block text-gray-300 hover:text-gray-500 transition cursor-pointer" href={'/conversations'}>
                         <HiChevronLeft size={32} />
@@ -30,7 +30,7 @@ const PageGroups = async ({
                     </div>
                     <div></div>
                 </div>
-                <div className='py-3 px-4 sm:px-4 lg:px-6 flex-1 h-screen  overflow-y-auto'>
+                <div className='py-3 px-4 sm:px-4 lg:px-6 flex-1 overflow-y-scroll'>
                     <Searchbar routeType='groups'
                         data={searchParams.q!}
                     />

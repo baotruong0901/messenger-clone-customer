@@ -17,13 +17,26 @@ interface Props {
 const Body = ({ initialMessages, session }: Props) => {
     const [messages, setMessages] = useState(initialMessages)
 
-    const bottomRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     const { conversationId } = useConversation()
 
     const seenMessage = async () => {
         await seen(conversationId, session?.tokens?.accessToken)
     }
+
+    useEffect(() => {
+        if (containerRef.current) {
+            const lastMessage = containerRef.current.lastElementChild;
+            console.log(lastMessage);
+
+            if (lastMessage) {
+                lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+            }
+        }
+
+    }, [conversationId, messages])
+
     useEffect(() => {
         seenMessage()
     }, [conversationId, session?.tokens?.accessToken]);
@@ -31,10 +44,10 @@ const Body = ({ initialMessages, session }: Props) => {
 
     useEffect(() => {
         pusherClient.subscribe(conversationId)
-        if (bottomRef.current) {
-            const lastMessage = bottomRef.current.lastElementChild;
+        if (containerRef.current) {
+            const lastMessage = containerRef.current.lastElementChild;
             if (lastMessage) {
-                lastMessage.scrollIntoView({ behavior: "auto", block: "end" });
+                lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
             }
         }
         const messageHandler = (message: Message) => {
@@ -46,13 +59,12 @@ const Body = ({ initialMessages, session }: Props) => {
                 }
                 return [...current, message]
             })
-            if (bottomRef.current) {
-                const lastMessage = bottomRef.current.lastElementChild;
+            if (containerRef.current) {
+                const lastMessage = containerRef.current.lastElementChild;
                 if (lastMessage) {
-                    lastMessage.scrollIntoView({ behavior: "auto", block: "end" });
+                    lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
                 }
             }
-
         }
 
         const updateMessageHandler = (newMessage: Message) => {
@@ -83,7 +95,7 @@ const Body = ({ initialMessages, session }: Props) => {
     }, [conversationId])
 
     return (
-        <div className="flex-1 overflow-y-auto pt-[72px]" ref={bottomRef} >
+        <div className="flex-1 overflow-y-scroll pt-[72px]" ref={containerRef} >
             {messages.length > 0 && messages.map((message, index) => {
                 let showAvatar = false
 
