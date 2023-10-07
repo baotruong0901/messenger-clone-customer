@@ -44,13 +44,9 @@ const AuthForm = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setIsLoading(true)
         if (pathname === '/auth/signup') {
-            const register = await signUp(data)
-
-            if (register) {
-                router.push("/auth/signin")
-            }
+            await signUp(data)
+            router.push("/auth/signin")
             setIsLoading(false)
-
         }
 
         if (pathname === '/auth/signin') {
